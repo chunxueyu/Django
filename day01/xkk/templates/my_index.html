@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>IT岗位</h1>
+<!--<ul>-->
+    <!--<li>前端工程师</li>-->
+    <!--<li>后端工程师</li>-->
+    <!--<li>测试工程师</li>-->
+    <!--<li>全栈工程师</li>-->
+<!--</ul>-->
+<ul>
+    {% for i in my_data %}
+        <li>{{i.name}}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
