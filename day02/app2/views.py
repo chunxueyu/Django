@@ -18,3 +18,17 @@ def my_zuoye(req):
         "shu":data
     }
     return render(req,"zuoye.html",res)
+
+def search_by_name(req):
+    na = req.GET
+    kw = na.get("kw")
+    # res = Stu.objects.filter(
+    #     name__contains=kw
+    # )
+    # res = Stu.objects.filter(
+    #     name__startswith=kw
+    # )
+    # res = Stu.objects.filter(age__in=[18,20])
+    # res = Stu.objects.filter(birthday__year=1998)
+    res = Stu.objects.filter(sex__in=[0])
+    return render(req, "zuoye.html", {"shu": res})
