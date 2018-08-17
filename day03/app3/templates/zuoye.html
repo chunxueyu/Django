@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业</title>
+</head>
+<body>
+    <form method="get" action="/app3/test">
+        <input type="text" name="hehe" />
+        <input type="submit" value="搜索" />
+    </form>
+    {% for foo in b %}
+        <li>{{ b.name }}有{{ b.history }}年的历史，使用人数是{{ b.u_number }}</li>
+    {% endfor %}
+
+
+</body>
+</html>
