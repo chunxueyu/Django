@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in ass %}
+
+    {% if i.face_score >= 80 %}
+        <li style="color: red;">{{ i.name }}</li>
+    {% else %}
+        <li>{{ i.name }}</li>
+    {% endif %}
+{% endfor %}
+<p>{{ ass.0.face_score }}</p>
+<p>我是通过访问方法得到的信息:{{ ass.1.get_msg }}</p>
+<hr/>
+<h1>这个是带empty的</h1>
+{% for foo in ass %}
+    <li>{{ foo.name }}</li>
+    <li>正向查{{ forloop.counter0 }}:{{ foo.name }}反向查:{{ forloop.revcounter0 }}</li>
+    {#        当没数据时，empty会起作用，有数据，empty无效#}
+{% empty %}
+    <h1>哈哈，没数据</h1>
+{% endfor %}
+
+<h1>
+    变量计算
+</h1>
+原来是{{ ass.0.face_score }}乘2以后{% widthratio ass.0.face_score 1 2 %}
+<br />
+整除：{{ ass.0.face_score|divisibleby:2 }}
+<br />
+不能整除：{{ ass.0.face_score|divisibleby:3 }}
+<h1>过滤器</h1>
+原来是{{ ass.0.face_score }}加负一：{{ ass.0.face_score|add:-1 }}
+<br />
+join的使用:{{ ass|join:"-" }}
+<br />
+设置默认：{{ hehe|default:2 }}
+<br />
+设置默认：{{ ass.0.face_score|default:50 }}
+<hr>
+{{ code|safe }}
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<form action="{% url 'python1808:hzn' hh2=1212 hh1=1 %}" method="get">
+  <div class="container">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">搜索</button>
+      </span>
+      <input type="text" name="kw" class="form-control" placeholder="请输入你搜索的关键字">
+    </div>
+</form>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">空姐</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>姓名</th>
+                <th>颜值</th>
+            </tr>
+            {% for foo in ass %}
+                <tr>
+                <td>
+                    {{ foo.name }}
+                </td>
+                 <td>
+                    {{ foo.face_score }}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+</body>
+</html>
