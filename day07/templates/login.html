@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <img src="/app7/img" alt="">
+    <br>
+    <input type="text" id = "my_code">
+    <br>
+    <button id="commit">提交</button>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script>
+    {#提交按钮得点击事件#}
+    $("#commit").click(function () {
+        {#获取csrf值#}
+        var csrftoken = $.cookie("csrftoken")
+        console.log(csrftoken)
+        {#拿input标签里得值#}
+        var code = $("#my_code").val();
+        $.ajax({
+            url:"/app7/confirm",
+            data:{
+                "code":code,
+                "csrfmiddlewaretoken":csrftoken
+            },
+            method:"post",
+            success:function (res) {
+                console.log(res);
+                if(res.code == 1){
+                    {# 成功时的处理#}
+                    alert(res.msg);
+                }else{
+                    {#失败时的处理#}
+                    alert(res.msg);
+                }
+            },
+            error:function () {
+                alert("电脑可能没网");
+            }
+        })
+    })
+    $("img").click(function () {
+        $(this).attr("src","/app7/img" + Math.random());
+    })
+</script>
+</html>
