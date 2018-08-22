@@ -1,0 +1,61 @@
+[views:index] [INFO]- 呵呵
+[views:index] [INFO]- 呵呵
+[exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /app9/index
+Traceback (most recent call last):
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/Django/day09/app9/views.py", line 10, in index
+    a.dkkjk
+NameError: name 'a' is not defined
+[views:index] [INFO]- 呵呵
+[exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /app9/index
+Traceback (most recent call last):
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/Django/day09/app9/views.py", line 10, in index
+    a.dkkjk
+NameError: name 'a' is not defined
+[views:index] [INFO]- 呵呵
+[exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /app9/index
+Traceback (most recent call last):
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/Django/day09/app9/views.py", line 10, in index
+    a.dkkjk
+NameError: name 'a' is not defined
+[views:index] [INFO]- 呵呵
+[exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /app9/index
+Traceback (most recent call last):
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/Django/day09/app9/views.py", line 10, in index
+    a.dkkjk
+NameError: name 'a' is not defined
+[views:index] [INFO]- 呵呵
+[exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /app9/index
+Traceback (most recent call last):
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/.virtualenvs/vir/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/Django/day09/app9/views.py", line 10, in index
+    a.dkkjk
+NameError: name 'a' is not defined
