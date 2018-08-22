@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<h1>千峰通知占座成功后台</h1>
+<input type="email" id = "em">
+<button>发送</button>
+</body>
+<script>
+    $("button").click(function () {
+        var email = $("#em").val();
+        $.ajax({
+            url:"/app8/send_v3",
+            data:{"addr":email},
+            method:"get",
+            success:function (res) {
+                if (res.code == 1){
+                    alert(res.msg);
+                }else {
+                    alert(res.msg);
+                }
+            }
+        })
+    })
+</script>
+</html>
