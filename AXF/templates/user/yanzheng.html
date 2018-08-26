@@ -1,0 +1,13 @@
+{% extends 'base/base_user.html' %}
+{% load static %}
+
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h1>恭喜{{ mail }}进入爱鲜蜂验证界面</h1>
+点击下面的连接完成校验(如非本人操作，请忽略)
+<a href="{{ url }}">{{ url }}</a>
+{% endblock %}c %}

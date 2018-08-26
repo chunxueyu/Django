@@ -1,0 +1,13 @@
+{% extends 'base/base_user.html' %}
+{% load static %}
+
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    恭喜{{ uname }}  ,注册成功
+    <br>
+    请前往邮箱界面激活账号
+{% endblock %}
