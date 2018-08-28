@@ -1,10 +1,14 @@
 import hashlib
 import uuid
+from functools import wraps
 
 from django.conf import settings
 from django.core.cache import cache
 from django.core.mail import send_mail
+from django.http import JsonResponse
 from django.template import loader
+
+from .models import MyUser
 
 
 def create_random_str():
@@ -42,3 +46,25 @@ def send_confirm_email(user,host):
     # 设置缓存
     cache.set(random_str,user.id,settings.CACHE_AGE)
     return True
+
+NOT_LOGIN = 2
+def check_login(func):
+    @wraps(func)
+    def inner(req,*args,**kwargs):
+        user = req.user
+        if isinstance(user,MyUser):
+            return func(req,*args,**kwargs)
+        else:
+            data = {
+                "code":NOT_LOGIN,
+                "msg":"未登录",
+                "data":"/axf/login"
+            }
+            return JsonResponse(data)
+    return inner
+
+def get_cart_money(cart_items):
+    sum = 0
+    for i in cart_items.filter(is_select=True):
+        sum = sum + i.goods.price * i.num
+    return round(sum,2)

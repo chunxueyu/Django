@@ -159,6 +159,11 @@ class Goods(models.Model):
     storenums = models.IntegerField()
     productnum = models.IntegerField()
 
+    current_num = models.IntegerField(
+        default=0,
+        verbose_name="当前数量"
+    )
+
     def __str__(self):
         return str(self.price)
 
@@ -179,3 +184,55 @@ class GoodsTypes(models.Model):
 
     class Meta:
         db_table = "axf_foodtypes"
+
+class Cart(models.Model):
+    user = models.ForeignKey(
+        MyUser,
+        verbose_name="用户"
+    )
+    goods = models.ForeignKey(
+        Goods,
+        verbose_name="商品"
+    )
+    num = models.IntegerField(
+        verbose_name="数量",
+        default=1
+    )
+    is_select = models.BooleanField(
+        verbose_name="选中状态",
+        default=True
+    )
+    class Meta:
+        verbose_name = "购物车"
+        index_together = ("user","is_select")
+
+class Order(models.Model):
+    ORDER_STATUS = (
+        (1,"未付款"),
+        (2,"未发货"),
+        (3,"未收货"),
+        (4,"未评价"),
+        (5,"完成")
+    )
+    user = models.ForeignKey(
+        MyUser
+    )
+    create_time = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="创建时间"
+    )
+    status = models.IntegerField(
+        choices=ORDER_STATUS,
+        default=1
+    )
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        db_index=True
+    )
+    goods = models.ForeignKey(
+        Goods
+    )
+    num = models.IntegerField(
+        verbose_name="数量"
+    )

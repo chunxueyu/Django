@@ -1,0 +1,35 @@
+{% extends "base/base_main.html" %}
+
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/order/css/order.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="cart">
+        <h3>订单编号：{{ order.id }}</h3>
+        <menu>
+            <ul>
+                {% for i in order.orderitem_set.all %}
+                    <li class="menuList" >
+                        <a href="#">
+                            <img src="{{ i.goods.productimg }}" alt="">
+                            <p>{{ i.goods.productname }}</p>
+                            <p class="presentPrice">{{ i.goods.price }}</p>
+                        </a>
+
+                        <section>
+                            <span>*{{ i.num }}</span>
+                        </section>
+                    </li>
+
+
+                {% endfor %}
+            </ul>
+        </menu>
+        <button id="order" class="btn btn-success" style="width: 100%;height: 1rem">去付款</button>
+
+    </div>
+{% endblock %}

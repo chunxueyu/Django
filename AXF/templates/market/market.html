@@ -12,125 +12,138 @@
 {#        左侧导航栏#}
         <aside>
             <ul>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>热销榜</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>新品尝鲜</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>优选水果</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>卤味熟食</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>牛奶面包</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>饮料酒水</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>休闲零食</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>方便速食</span>
-                </li>
-                <li>
-                    <a href=""></a>
-                    <span>粮油调味</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>生活用品</span>
-                </li>
-                <li>
-                    <a href="" class="yellowSlide"></a>
-                    <span>冰激凌</span>
-                </li>
+                {% for t in types %}
+                    <li>
+                        <a href="{% url 'axf:market_with_params' t.typeid 0 1 %}">{{ t.typename }}</a>
+{#                        小黄线#}
+                        {% ifequal t.typeid select_type_id %}
+                            <span class="yellowSlide"></span>
+                        {% endifequal %}
+
+                    </li>
+                {% endfor %}
             </ul>
         </aside>
-
-
 
         <section>
             {#        上面类型分类#}
             <nav>
                 <ul>
-                    <li>
-                        <span id="all_types_btn">全部类型
-                            <span class="glyphicon glyphicon-chevron-down" id="type_icon"></span>
+                    <li id="all_types">
+                        <span>全部类型
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </span>
                     </li>
-                    <li>
-                        <span id="all_types_btn">综合排序
-                            <span class="glyphicon glyphicon-chevron-down" id="sort_icon"></span>
+                    <li id="all_sort">
+                        <span>综合排序
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </span>
                     </li>
                 </ul>
             </nav>
 
-            <mean>
-{#                商品列表#}
+            <menu>
                 <ul>
-                    <li>
-                        <a href="">
-                            <img src="" alt="">
-                            <div class="shoppingInfo">
-                                <h6>商品名称</h6>
-                                <p class="detailTag">
-                                    <span>精选</span>
-                                    <span></span>
-                                </p>
-                                <p class="unit">160</p>
-                                <p class="price">
-                                    <span>￥20</span>
-                                    <s>$45</s>
-                                </p>
-                            </div>
+                    {% for g in goods %}
+                        <li>
+                            <a href="#">
+                                <img src="{{ g.productimg }}" alt="">
+                                <div class="shoppingInfo">
+                                    <h6>{{ g.productname }}</h6>
+                                    <p class="detailTag">
+                                        <span>精选</span>
+                                        <span></span>
+                                    </p>
+                                    <p class="unit">{{ g.specifics }}</p>
+                                    <p class="price">
+                                        <span>￥{{ g.price }}</span>
+                                        <s>￥{{ g.marketprice }}</s>
+                                    </p>
+                                </div>
+                            </a>
+
                             <section>
-
-                                <button class="subShopping">-</button>
-                                <span>0</span>
-                                <button class="addShopping">+</button>
-
+                                <button class="subShopping" g_id="{{ g.id }}">-</button>
+                                <span>{{ g.current_num }}</span>
+                                <button class="addShopping" g_id="{{ g.id }}">+</button>
                             </section>
-                        </a>
-                        <a href="">
-                            <img src="" alt="">
-                            <div class="shoppingInfo">
-                                <h6>商品名称</h6>
-                                <p class="detailTag">的时刻了两块凉快了
-                                    <span>精选</span>
-                                    <span></span>
-                                </p>
-                                <p class="unit">160</p>
-                                <p class="price">
-                                    <span>$32</span>
-                                    <s>$53</s>
-                                </p>
-                            </div>
-                        </a>
-                    </li>
+                        </li>
+                    {% endfor %}
+
                 </ul>
-                <div>
+
+                <div id="c_control">
                     <div>
-                        <a href="">
-                            <button>销量优先</button>
+{#                        <a href="">#}
+{#                            <button>#}
+{#                                全部分类#}
+{#                            </button>#}
+{#                        </a>#}
+                        {% for i in sub_types %}
+                            <a href="{% url 'axf:market_with_params' select_type_id i.1 1 %}">
+                            {% ifequal i.1 select_sub_type_id %}
+                                <button class="btn btn-success">{{ i.0 }}</button>
+                                {% else %}
+                                    <button>{{ i.0 }}</button>
+                            {% endifequal %}
+                            </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div id="s_control">
+                    <div>
+                        <a href="{% url 'axf:market_with_params' select_type_id select_sub_type_id 1 %}">
+{#                            <button>#}
+{#                                综合排序#}
+{#                            </button>#}
+                            {% ifequal sort_type 1 %}
+                                <button class="btn btn-success">
+                                综合排序
+                                </button>
+                                {% else %}
+                                    <button>
+                                        综合排序
+                                    </button>
+                            {% endifequal %}
+                        </a>
+                        <a href="{% url 'axf:market_with_params' select_type_id select_sub_type_id 2 %}">
+{#                            <button class="">#}
+{#                                销量优先#}
+{#                            </button>#}
+                            {% ifequal sort_type 2 %}
+                                <button class="btn btn-success">
+                                销量优先
+                                </button>
+                                {% else %}
+                                    <button>
+                                        销量优先
+                                    </button>
+                            {% endifequal %}
+                        </a>
+                        <a href="{% url 'axf:market_with_params' select_type_id select_sub_type_id 3 %}">
+{#                            <button class="">#}
+{#                                价格优先#}
+{#                            </button>#}
+                            {% ifequal sort_type 3 %}
+                                <button class="btn btn-success">
+                                    价格优先
+                                </button>
+                                {% else %}
+                                    <button>
+                                        价格优先
+                                    </button>
+                            {% endifequal %}
                         </a>
                     </div>
                 </div>
-            </mean>
-
+            </menu>
 
         </section>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'axf/market/js/market.js' %}"></script>
 {% endblock %}
